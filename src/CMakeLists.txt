@@ -1,1 +1,1 @@
-subdirs (monitor)
+subdirs (monitor webui)
