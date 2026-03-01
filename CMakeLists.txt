@@ -5,4 +5,8 @@ project (embedded-device-core
     LANGUAGES C
 )
 
+find_package(PkgConfig REQUIRED)
+
+pkg_check_modules(BLKID REQUIRED IMPORTED_TARGET blkid)
+
 subdirs (src)
