@@ -1,7 +1,10 @@
 add_custom_command (
 	OUTPUT ipc_protocol_generated.h
-	COMMAND ${FLATC} -c ../ipc_protocol.fbs
+        COMMAND ${FLATC} -c ${CMAKE_CURRENT_SOURCE_DIR}/../ipc_protocol.fbs
+        DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/../ipc_protocol.fbs
 	VERBATIM)
+
+set_source_files_properties(ipc_protocol_generated.h PROPERTIES GENERATED TRUE)
 
 add_executable (monitor	main.c
 			configuration.c configuration.h

@@ -58,6 +58,12 @@ add_custom_target(add-lang
 
 add_custom_target(translations ALL DEPENDS ${MO_FILES})
 
+
+add_custom_command (
+	OUTPUT Core/CreateInitialCredentialPayload.py Core/ErrorPayload.py Core/__init__.py Core/Message.py Core/MessageType.py Core/OkPayload.py Core/Payload.py
+	COMMAND ${FLATC} -p ../ipc_protocol.fbs
+	VERBATIM)
+
 #install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/src/" DESTINATION bin/webserver)
 ## Install the compiled translations from the build directory
 #install(DIRECTORY "${OUTPUT_BASE_DIR}/" DESTINATION bin/webserver/locales)

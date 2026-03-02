@@ -1,4 +1,4 @@
-namespace Core;
+namespace core;
 
 enum MessageType: byte {
   Ok = 0,
