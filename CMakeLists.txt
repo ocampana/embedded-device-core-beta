@@ -7,6 +7,9 @@ project (embedded-device-core
 
 find_package(Gettext REQUIRED)
 find_package(PkgConfig REQUIRED)
+find_package(FlatBuffers REQUIRED)
+
+find_program(FLATC flatc REQUIRED)
 
 pkg_check_modules(BLKID REQUIRED IMPORTED_TARGET blkid)
 

@@ -5,3 +5,4 @@ CMakeCache.txt
 src/monitor/monitor
 *.po~
 *.mo
+src/monitor/ipc_protocol_generated.h

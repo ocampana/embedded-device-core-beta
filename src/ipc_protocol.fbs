@@ -1,0 +1,32 @@
+namespace Core;
+
+enum MessageType: byte {
+  Ok = 0,
+  Error = 1,
+  CreateInitialCredentials = 2
+}
+
+table OkPayload {
+}
+
+table ErrorPayload {
+}
+
+table CreateInitialCredentialPayload {
+    username: string;
+    password: string;
+}
+
+union Payload {
+    OkPayload,
+    ErrorPayload,
+    CreateInitialCredentialPayload
+}
+
+table Message {
+    type: MessageType;
+    return_path: string;
+    payload: Payload;
+}
+
+root_type Message;
