@@ -1,11 +1,5 @@
 namespace core;
 
-enum MessageType: byte {
-  Ok = 0,
-  Error = 1,
-  CreateInitialCredentials = 2
-}
-
 table OkPayload {
 }
 
@@ -24,7 +18,6 @@ union Payload {
 }
 
 table Message {
-    type: MessageType;
     return_path: string;
     payload: Payload;
 }
