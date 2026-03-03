@@ -58,11 +58,19 @@ add_custom_target(add-lang
 
 add_custom_target(translations ALL DEPENDS ${MO_FILES})
 
+set(PY_OUTPUT "core/MessageType.py")
+
 
 add_custom_command (
-	OUTPUT Core/CreateInitialCredentialPayload.py Core/ErrorPayload.py Core/__init__.py Core/Message.py Core/MessageType.py Core/OkPayload.py Core/Payload.py
+	OUTPUT ${PY_OUTPUT}
 	COMMAND ${FLATC} -p ../ipc_protocol.fbs
 	VERBATIM)
+
+add_custom_target(generate_fbs ALL DEPENDS ${PY_OUTPUT})
+
+set_directory_properties(PROPERTIES ADDITIONAL_MAKE_CLEAN_FILES "core")
+
+install(PROGRAMS webui.py DESTINATION bin)
 
 #install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/src/" DESTINATION bin/webserver)
 ## Install the compiled translations from the build directory

@@ -1,20 +1,28 @@
 namespace core;
 
-table OkPayload {
+table Ok { }
+
+table Error { }
+
+table GetRunningStateRequest { }
+
+enum RunningState: byte { FactoryDefault, Operational }
+
+table GetRunningStateResponse {
+    state: RunningState;
 }
 
-table ErrorPayload {
-}
-
-table CreateInitialCredentialPayload {
+table CreateInitialCredentialsRequest {
     username: string;
     password: string;
 }
 
 union Payload {
-    OkPayload,
-    ErrorPayload,
-    CreateInitialCredentialPayload
+    Ok,
+    Error,
+    GetRunningStateRequest,
+    GetRunningStateResponse,
+    CreateInitialCredentialsRequest
 }
 
 table Message {

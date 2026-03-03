@@ -2,7 +2,7 @@
 
 #include <stdbool.h>
 
-#define INPUT_FIFO "/tmp/monitor.fifo"
+#define INPUT_QUEUE "/monitor"
 
 #ifdef __cplusplus
 extern "C"
