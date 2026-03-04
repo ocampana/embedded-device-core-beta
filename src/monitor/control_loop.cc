@@ -114,7 +114,10 @@ void control_loop (bool *exit_flag)
             {
                 case Payload_GetRunningStateRequest:
                 {
-		    std::cout << "Received Payload_GetRunningStateRequest" << std::endl;
+#if VERBOSE > 0
+                    std::cout << "Received Payload_GetRunningStateRequest" << std::endl;
+#endif
+
                     flatbuffers::FlatBufferBuilder builder (1024);
 
                     auto response =
@@ -138,10 +141,41 @@ void control_loop (bool *exit_flag)
                 }
 
                 case Payload_CreateInitialCredentialsRequest:
+                {
+#if VERBOSE > 0
+                    std::cout << "Received Payload_CreateInitialCredentialsRequest" << std::endl;
+#endif
+
+                    auto request =
+                        static_cast<const core::CreateInitialCredentialsRequest*> (message->payload ());
+
+		    /* 
+		     * let's verify that we received username and
+		     * password.
+		     */
+		    if (request->username () == nullptr ||
+                        request->password () == nullptr)
+                    {
+                        reply_error (message->return_path ()->c_str ());
+			break;
+                    }
+
+		    /*
+		     * Let's verify that we are in factory default state
+		     */
+
+		    std::string username = request->username ()->str ();
+		    std::string password = request->password ()->str ();
+
                     reply_ok (message->return_path ()->c_str ());
                     break;
+                }
 
                 default:
+#if VERBOSE > 0
+                    std::cout << "Received unknown message" << std::endl;
+#endif
+
                     reply_error (message->return_path ()->c_str ());
                     break;
             }

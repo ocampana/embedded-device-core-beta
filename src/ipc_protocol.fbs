@@ -17,12 +17,18 @@ table CreateInitialCredentialsRequest {
     password: string;
 }
 
+table ResetToFactoryDefaultRequest {
+    username: string;
+    password: string;
+}
+
 union Payload {
     Ok,
     Error,
     GetRunningStateRequest,
     GetRunningStateResponse,
-    CreateInitialCredentialsRequest
+    CreateInitialCredentialsRequest,
+    ResetToFactoryDefaultRequest
 }
 
 table Message {

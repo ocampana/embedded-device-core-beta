@@ -15,6 +15,6 @@ add_executable (monitor	main.c
 
 target_link_libraries(monitor PkgConfig::BLKID)
 
-target_compile_options(monitor PRIVATE "-g")
+target_compile_options(monitor PRIVATE -DVERBOSE=1 -g)
 
 install(TARGETS monitor DESTINATION sbin)
